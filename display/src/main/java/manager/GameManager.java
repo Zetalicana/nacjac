@@ -40,7 +40,6 @@ public class GameManager {
     private static Logger logger = LoggerFactory.getLogger(Game.class);
     private final int HEIGHT = 1000;
     private final int WIDTH = 1000;
-    private boolean pathOn = true;
     private GraphicsContext graphicsContext;
     @Getter @Setter
     private static Stage gameStage;
@@ -52,7 +51,6 @@ public class GameManager {
     private AStarPathAlgorithm aStarPathAlgorithm;
     private Matrix<Node> matrix;
     private GraphBuilder graphBuilder;
-    private List<Point2D> path;
     private List<Ghost> ghosts;
     private Game game;
 
@@ -135,7 +133,7 @@ public class GameManager {
             gameAnimationTimer.stop();
             PlayerDAOImpl playerDAO = new PlayerDAOImpl();
             playerDAO.savePlayer(game.getPlayer());
-            System.out.println("player" + game.getPlayer().getName());
+            logger.info("{} saved to the database",game.getPlayer().getName());
             gameStage.close();
         });
         logger.info("GameStage initialized.");
@@ -160,11 +158,13 @@ public class GameManager {
         wallBlocks = mazeProcessor.getWallBlocks();
         wallBlockView.setWallBlockList(wallBlocks);
         balls = mazeProcessor.getBalls();
+
         for (Ball ball : balls) {
             ball.init();
             ball.setPacman(pacman);
             ball.setGame(game);
         }
+
         game.setBallsCount(balls.size());
         logger.info("Balls count {}",game.getBallsCount());
         ballView.setBalls(balls);
@@ -188,11 +188,6 @@ public class GameManager {
             ball.setGhosts(ghosts);
         }
         ghostView.setGhosts(ghosts);
-        //aStarPathAlgorithm.findPath(matrix.getValue(1, 10), matrix.getValue(5, 10));
-        //path = aStarPathAlgorithm.generatePath(matrix.getValue(1, 30), matrix.getValue(29, 5));
-        /*for (Point2D a : path) {
-            System.out.println(a.toString());
-        }*/
 
         keyListener(gameStage.getScene());
         game.setGameState(GameState.PLAY);
