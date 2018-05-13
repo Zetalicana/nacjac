@@ -6,12 +6,18 @@ import game.ball.Ball;
 import game.ghost.*;
 import game.state.GameState;
 import javafx.animation.AnimationTimer;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -107,8 +113,7 @@ public class GameManager {
                 case NUMPAD1: game.setGameState(GameState.PLAY);break;
                 case NUMPAD2: game.setGameState(GameState.RESET);break;
                 case NUMPAD3: game.setGameState(GameState.LEVEL_CLEARED);break;
-                case NUMPAD5: if (game.isShowPath()){game.setShowPath(false);} else game.setShowPath(true);break;
-                case NUMPAD6: game.setShowPath(false);break;
+                case NUMPAD5: if (ghostView.isShowPath()){ghostView.setShowPath(false);} else ghostView.setShowPath(true);break;
             }
         });
     }
@@ -145,7 +150,7 @@ public class GameManager {
             case PLAY: updatePlaying();break;
             case RESET: reset(); break;
             case LEVEL_CLEARED: hardReset(); break;
-            case GAME_OVER: gameAnimationTimer.stop();break;
+            case GAME_OVER: gameOver();break;
         }
     }
 
@@ -250,5 +255,46 @@ public class GameManager {
         pacmanView.draw(graphicsContext);
         ghostView.draw(graphicsContext);
         fontView.draw(graphicsContext, game);
+    }
+
+    public void gameOver() {
+        gameAnimationTimer.stop();
+        Stage gameOverStage = new Stage();
+        Text text = new Text("Game Over");
+        Text text1 = new Text ("Want to play again?");
+        Button yes = new Button("Yes");
+        yes.setOnAction(event -> yesEvent(gameOverStage));
+        Button no = new Button("No");
+        text.setTextAlignment(TextAlignment.CENTER);
+        text.setLayoutX(100);
+        text.setLayoutY(20);
+        text1.setTextAlignment(TextAlignment.CENTER);
+        text1.setLayoutX(100);
+        text1.setLayoutY(40);
+        yes.setLayoutX(30);
+        yes.setLayoutY(70);
+        no.setLayoutX(240);
+        no.setLayoutY(70);
+        no.setOnAction(event -> noEvent(gameOverStage));
+        AnchorPane anchorPane = new AnchorPane();
+        anchorPane.getChildren().addAll(text, text1, yes, no);
+        Scene scene = new Scene(anchorPane, 300, 100);
+        gameOverStage.setScene(scene);
+        gameOverStage.show();
+    }
+
+    private void yesEvent(Stage stage) {
+        stage.close();
+        game.setGameState(GameState.LEVEL_CLEARED);
+        game.setScore(0);
+        gameAnimationTimer.start();
+    }
+
+    private void noEvent(Stage stage) {
+        PlayerDAOImpl playerDAO = new PlayerDAOImpl();
+        playerDAO.savePlayer(game.getPlayer());
+        logger.info("{} saved to the database",game.getPlayer().getName());
+        stage.close();
+        gameStage.close();
     }
 }

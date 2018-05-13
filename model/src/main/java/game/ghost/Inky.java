@@ -6,7 +6,7 @@ import lombok.Setter;
 import point.Point2D;
 
 /**
- * {@code Inky} class is the one subclass of the {@link game.ghost.Ghost}.
+ * {@code Inky} is a subclass of {@link game.ghost.Ghost}.
  * {@code Inky} is the tricky one. It try to ambush pacman with the help of {@code Blinky}.
  */
 @Setter

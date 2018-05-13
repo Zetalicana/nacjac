@@ -22,7 +22,6 @@ public class Game {
     private int score;
     private int highScore;
     private int ballsCount;
-    private boolean showPath;
 
     public Game(Player player) {
         this.player = player;

@@ -6,7 +6,7 @@ import lombok.Setter;
 import point.Point2D;
 
 /**
- * {@code Blinky} class is one subclass of the {@link game.ghost.Ghost}.
+ * {@code Blinky}  is a subclass of {@link game.ghost.Ghost}.
  * In the {@link game.state.GhostState#CHASE} state it, always target {@code Pacman} position.
  */
 @Setter

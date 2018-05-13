@@ -6,7 +6,7 @@ import lombok.Setter;
 import point.Point2D;
 
 /**
- * {@code Pinky} class is the one subclass of the {@link game.ghost.Ghost}.
+ * {@code Pinky} is a subclass of {@link game.ghost.Ghost}.
  * {@code Pinky} always targeting ahead {@code Pacman} with 4 blocks if its possible.
  */
 @Setter

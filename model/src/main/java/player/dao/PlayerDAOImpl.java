@@ -1,5 +1,6 @@
 package player.dao;
 
+import javafx.application.Platform;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -200,15 +201,30 @@ public class PlayerDAOImpl implements PlayerDAO {
                 }
 
             } catch (ParserConfigurationException e) {
-                e.printStackTrace();
+                logger.error("Something went wrong.");
+                logger.error(e.getMessage());
+                logger.error("Application has been terminated.");
+                Platform.exit();
             } catch (SAXException e) {
-                e.printStackTrace();
+                logger.error("Something went wrong.");
+                logger.error(e.getMessage());
+                logger.error("Application has been terminated.");
+                Platform.exit();
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("Something went wrong.");
+                logger.error(e.getMessage());
+                logger.error("Application has been terminated.");
+                Platform.exit();
             } catch (TransformerConfigurationException e) {
-                e.printStackTrace();
+                logger.error("Something went wrong.");
+                logger.error(e.getMessage());
+                logger.error("Application has been terminated.");
+                Platform.exit();
             } catch (TransformerException e) {
-                e.printStackTrace();
+                logger.error("Something went wrong.");
+                logger.error(e.getMessage());
+                logger.error("Application has been terminated.");
+                Platform.exit();
             }
         }
 
@@ -261,13 +277,21 @@ public class PlayerDAOImpl implements PlayerDAO {
             }
 
         } catch (ParserConfigurationException e) {
-            e.printStackTrace();
+            logger.error("Something went wrong.");
+            logger.error(e.getMessage());
+            logger.error("Application has been terminated.");
+            Platform.exit();
         } catch (SAXException e) {
-            e.printStackTrace();
+            logger.error("Something went wrong.");
+            logger.error(e.getMessage());
+            logger.error("Application has been terminated.");
+            Platform.exit();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Something went wrong.");
+            logger.error(e.getMessage());
+            logger.error("Application has been terminated.");
+            Platform.exit();
         }
-        System.out.println(playerList.toString());
         return playerList;
     }
 

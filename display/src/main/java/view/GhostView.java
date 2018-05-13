@@ -10,15 +10,18 @@ import game.ghost.Pinky;
 import game.state.GhostState;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import lombok.Getter;
 import lombok.Setter;
 import model.Node;
 
 import java.util.List;
 
+@Getter
 @Setter
 public class GhostView {
 
     private List<Ghost> ghosts;
+    private boolean showPath;
 
     public void draw(GraphicsContext graphicsContext) {
         for (Ghost ghost : ghosts) {
@@ -53,7 +56,7 @@ public class GhostView {
                 float y = ghost.getPosition().getY();
                 graphicsContext.setLineWidth(1.5);
                 List<Node> path = ghost.getPath();
-                if (path != null && ghost.getGame().isShowPath()) {
+                if (path != null && isShowPath()) {
                     for (int i = 1; i < path.size(); i++) {
                         float x1 = path.get(i - 1).getCol() * WallBlock.BLOCKSIZE - (4 * WallBlock.BLOCKSIZE);
                         float y1 = path.get(i - 1).getRow() * WallBlock.BLOCKSIZE;
@@ -64,8 +67,8 @@ public class GhostView {
                     }
                 }
                 graphicsContext.fillRect(x, y, WallBlock.BLOCKSIZE, WallBlock.BLOCKSIZE);
-                graphicsContext.setStroke(Color.WHITE);
-                graphicsContext.strokeRect(ghost.getHitBox().getX(), ghost.getHitBox().getY(), WallBlock.BLOCKSIZE, WallBlock.BLOCKSIZE);
+                //graphicsContext.setStroke(Color.WHITE);
+                //graphicsContext.strokeRect(ghost.getHitBox().getX(), ghost.getHitBox().getY(), WallBlock.BLOCKSIZE, WallBlock.BLOCKSIZE);
                 graphicsContext.setGlobalAlpha(1.0);
             }
 

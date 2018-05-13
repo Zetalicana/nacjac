@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +44,7 @@ public class MainMenuManager {
         stage.setTitle("Main Menu");
         stage.centerOnScreen();
         stage.setResizable(false);
+        stage.initStyle(StageStyle.UTILITY);
         logger.info("Stage initialized");
     }
 

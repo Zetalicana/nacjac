@@ -9,7 +9,7 @@ import point.Point2D;
 
 
 /**
- * {@code Clyde} class is the one subclass of the {@link game.ghost.Ghost}.
+ * {@code Clyde} is a subclass of {@link game.ghost.Ghost}.
  * {@code Clyde} is the stupid one. It never try to kill {@code Pacman}.
  * After it is in a specified range with {@code Pacman} , it moving back to the corner.
  */

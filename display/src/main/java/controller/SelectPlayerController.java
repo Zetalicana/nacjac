@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,11 +58,11 @@ public class SelectPlayerController implements Initializable {
                     }
                 }
             }
+            Stage stage = (Stage) playerListView.getScene().getWindow();
+            stage.close();
             GameManager gameManager = new GameManager(player);
             gameManager.start();
-
         }
-
     }
 
     @FXML
