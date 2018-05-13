@@ -14,7 +14,7 @@
     <suppress checks="JavadocType"  files="[\\/]*Manager*\.java$"/>
     <suppress checks="JavadocType"  files="[\\/]*View*\.java$"/>
     <suppress checks="JavadocMethod"  files="[\\/]Matrix\.java$" lines="30-42"/>
-    <suppress checks="JavadocMethod"  files="[\\/]Game\.java$" lines="27"/>
+    <suppress checks="JavadocMethod"  files="[\\/]Game\.java$" lines="26"/>
     <suppress checks="JavadocMethod"  files="[\\/]MazeProcessor\.java$" lines="24"/>
     <suppress checks="JavadocMethod"  files="[\\/]AStarPathAlgorithm\.java$" lines="23"/>
     <suppress checks="JavadocMethod"  files="[\\/]Node\.java$" lines="31"/>
