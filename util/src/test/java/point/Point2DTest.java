@@ -52,13 +52,35 @@ public class Point2DTest {
 
     @Test
     public void distance1() {
+        point2D.setXY(1300, 1500);
+        float distance = point2D.distance(new Point2D(300, 1324));
+        Assert.assertEquals(1015.3699, distance, 0.01);
+
+        point2D.setXY(302, 1213);
+        distance = point2D.distance(new Point2D(1201, 304));
+        Assert.assertEquals(1278.4686, distance, 0.01);
     }
 
     @Test
     public void multiply() {
+        point2D.setXY(30, 60);
+        Point2D multiplied = point2D.multiply(3);
+        Assert.assertEquals(new Point2D(point2D.getX() * 3, point2D.getY() * 3), multiplied);
+
+
+        point2D.setXY(321124, 213123);
+        multiplied = point2D.multiply(3);
+        Assert.assertEquals(new Point2D(point2D.getX() * 3, point2D.getY() * 3), multiplied);
     }
 
     @Test
     public void negate() {
+        point2D.setXY(-213214, 214124);
+        point2D.negate();
+        Assert.assertEquals(new Point2D(213214, -214124),point2D);
+
+        point2D.setXY(134, -12134);
+        point2D.negate();
+        Assert.assertEquals(new Point2D(-134, 12134),point2D);
     }
 }
