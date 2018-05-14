@@ -110,7 +110,7 @@ public class GameManager {
                 case DOWN:  pacman.setDesiredDirection(new Point2D(0, 1));break;
                 case LEFT:  pacman.setDesiredDirection(new Point2D(-1, 0));break;
                 case RIGHT: pacman.setDesiredDirection(new Point2D(1, 0)); break;
-                case NUMPAD1: game.setGameState(GameState.PLAY);break;
+                case NUMPAD1: for (Ghost ghost : ghosts){ghost.initVulnerable();}break;
                 case NUMPAD2: game.setGameState(GameState.RESET);break;
                 case NUMPAD3: game.setGameState(GameState.LEVEL_CLEARED);break;
                 case NUMPAD5: if (ghostView.isShowPath()){ghostView.setShowPath(false);} else ghostView.setShowPath(true);break;

@@ -124,6 +124,7 @@ public class Ghost {
 
     protected void vulnerable() {
         if (isEnterVulnerable()) {
+            if (!(col < 9 && row == 14 && velocity.getX() == 1) && !(col > 25 && row == 14 && velocity.getX() == -1))
             this.getVelocity().negate();
             float x = this.getVelocity().getX();
             float y = this.getVelocity().getY();
@@ -208,6 +209,7 @@ public class Ghost {
                 updateArrayPosition();
                 ghostState = GhostState.DEAD;
                 reachedDestination = true;
+                enterVulnerable = true;
             }
         }
     }
