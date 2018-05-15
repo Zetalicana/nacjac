@@ -68,10 +68,15 @@ public class GameManager {
 
 
     private AnimationTimer gameAnimationTimer = new AnimationTimer() {
+	private long lastUpdate = 0 ;
         @Override
         public void handle(long now) {
-            update();
-            draw();
+		if (now - lastUpdate >= 28_000_000) {
+                        update();
+            			draw();
+                        lastUpdate = now ;
+                    }
+            
         }
     };
 
